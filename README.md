@@ -1,5 +1,7 @@
 # Utils_Library
 
+[![](https://jitpack.io/v/maciekpawlowski1/Utils_Library.svg)](https://jitpack.io/#maciekpawlowski1/Utils_Library)
+
 ### Gradle
 
 Add the dependency below into your **module**'s `build.gradle` file:
