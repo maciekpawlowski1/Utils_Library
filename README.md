@@ -27,11 +27,17 @@ dependencyResolutionManagement {
 val result: Resource<Int> = Resource.Success(data = 10)
 val errorResult: Resource<Int> = Resource.Error(message = UiText.NonTranslatable("Error text"))
 
-result.onSuccess {
-    //Do something
-}.onError { errorUiText, data ->
-    //Do something
+result.onSuccess { data ->
+    //Do something when success
+}.onError { errorUiText, dataOrNull ->
+    //Do something when error
 }
+
+val nullableData = result.dataOrNull()
+
+val errorMessage: UiText = result.messageOrNull()
+
+val resultWithoutData: Resource<Unit> = result.asUnitResource()
 ```
 - UiData
 - UiText
