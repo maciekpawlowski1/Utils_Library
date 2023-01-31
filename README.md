@@ -20,3 +20,19 @@ dependencyResolutionManagement {
     }
 }
 ```
+
+### What's inside?
+- Resource
+```kotlin
+val result: Resource<Int> = Resource.Success(data = 10)
+val errorResult: Resource<Int> = Resource.Error(message = UiText.NonTranslatable("Error text"))
+
+result.onSuccess {
+    //Do something
+}.onError { errorUiText, data ->
+    //Do something
+}
+```
+- UiData
+- UiText
+- UiDate
