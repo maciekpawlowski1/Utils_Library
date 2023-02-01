@@ -24,23 +24,53 @@ dependencyResolutionManagement {
 ```
 
 ### What's inside?
+- UiText
+```kotlin
+val nonTranslatableText: UiText = UiText.NonTranslatable("Non translatable text")
+val translatableText: UiText = UiText.Translatable(resId = R.string.app_name)
+
+//In composable function
+val textAsString: String = nonTranslatableText.asString()
+//Outside composable function
+val textAsString2: String = translatableText.asString(context = context)
+```
+
 - Resource
 ```kotlin
 val result: Resource<Int> = Resource.Success(data = 10)
 val errorResult: Resource<Int> = Resource.Error(message = UiText.NonTranslatable("Error text"))
 
 result.onSuccess { data ->
-    //Do something when success
+    //Do something if success
 }.onError { errorUiText, dataOrNull ->
-    //Do something when error
+    //Do something if error
 }
 
-val nullableData = result.dataOrNull()
+val dataOrNull = result.dataOrNull()
 
-val errorMessage: UiText = result.messageOrNull()
+val errorMessageOrNull: UiText? = result.messageOrNull()
 
 val resultWithoutData: Resource<Unit> = result.asUnitResource()
 ```
 - UiData
-- UiText
+```kotlin
+val loadingData: UiData<Int> = UiData.Loading()
+val successData: UiData<Int> = UiData.Success(data = 5, isFresh = true)
+val errorData: UiData<Int> = UiData.Error(message = UiText.NonTranslatable("Connection error"))
+
+successData.onSuccess { 
+    //Show some data
+}.onError { 
+    //Show some error text
+}.onLoading { 
+    //Display some loading indicator
+}
+
+val dataOrNull = successData.dataOrNull()
+```
 - UiDate
+```kotlin
+val uiDate: UiDate = UiDate(offsetDateTimeDate = OffsetDateTime.now())
+            val dayText: String = uiDate.asLocalDateString()
+            val dateTimeText: String = uiDate.asLocalDateTimeString()
+```
