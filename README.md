@@ -71,6 +71,7 @@ val dataOrNull = successData.dataOrNull()
 - UiDate
 ```kotlin
 val uiDate: UiDate = UiDate(offsetDateTimeDate = OffsetDateTime.now())
-            val dayText: String = uiDate.asLocalDateString()
-            val dateTimeText: String = uiDate.asLocalDateTimeString()
+
+val dayText: String = uiDate.asLocalDateString()
+val dateTimeText: String = uiDate.asLocalDateTimeString()
 ```
